@@ -3,9 +3,14 @@ import React from "react";
 function MovieCard(props) {
   console.log(props.data);
   return (
-    <div className="col">
-      <div className="card">
-        <img src={props.data.Poster} className="card-img-top" alt="poster" style={{ height: "50vh" }}/>
+    <div className="col" >
+      <div className="card" style={{ width: "10rem"}}>
+        <img
+          src={props.data.Poster}
+          className="card-img-top img-fluid img-thumbnail"
+          alt="poster"
+          style={{ width: "auto"}}
+        />
         <div className="card-body">
           <h5 className="card-title">{props.data.Title}</h5>
           <p className="card-text">

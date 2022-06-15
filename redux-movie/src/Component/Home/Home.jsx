@@ -7,7 +7,7 @@ import { addMovies } from "../../Redux/movie/MovieSlice";
 function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const movieText = "Load";
+    const movieText = "Harry";
     const fetchMovies = async () => {
       const response = await MovieApi.get(
         `?apikey=${MY_API_KEY}&s=${movieText}&type=movie`

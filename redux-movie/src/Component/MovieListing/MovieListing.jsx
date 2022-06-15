@@ -17,7 +17,7 @@ function MovieListing() {
       <div className="col-md-12">
         <div className="card-body">
           <h5 className="card-title text-center">Movies List</h5>
-          <div className="row row-cols-1 row-cols-md-2 g-4">{renderMovies}</div>
+          <div className="d-flex justify-content-around flex-wrap col-md-12">{renderMovies}</div>
         </div>
       </div>
     </div>
