@@ -7,7 +7,7 @@ import { addMovies } from "../../Redux/movie/MovieSlice";
 function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
-    const movieText = "Harry";
+    const movieText = "Load";
     const fetchMovies = async () => {
       const response = await MovieApi.get(
         `?apikey=${MY_API_KEY}&s=${movieText}&type=movie`
@@ -22,7 +22,7 @@ function Home() {
   return (
     <div>
       <div className="img-fluid">
-        <img src="" alt="banner" />
+        {/* <img src="" alt="banner" /> */}
       </div>
       <MovieListing />
     </div>
