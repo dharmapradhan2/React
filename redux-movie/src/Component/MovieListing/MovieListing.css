@@ -11,5 +11,5 @@
   align-content: space-around;
   justify-content: space-between;
   flex: 1;
-  /* max-height: 10%; */
+  max-height: 10%;
 }
