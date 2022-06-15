@@ -13,11 +13,11 @@ function MovieListing() {
       : Error();
   // console.log(renderMovies);
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="col-md-12">
         <div className="card-body">
           <h5 className="card-title text-center">Movies List</h5>
-          <div className="d-flex justify-content-around flex-wrap col-md-12">{renderMovies}</div>
+          <div className="card-group">{renderMovies}</div>
         </div>
       </div>
     </div>
