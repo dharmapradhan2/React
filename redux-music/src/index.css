@@ -6,8 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh !important;
-  width: 100vw;
+  height: 100% !important;
+  /* width: 100vw; */
   background-color: #4158d0;
   background-image: linear-gradient(
     43deg,
@@ -16,7 +16,7 @@ body {
     #ff9c70 66%,
     #86c434 100%
   );
-  background-size: cover;
+  background-size: contain;
   /* display: flex;
   flex-direction: row;
   justify-content: center;

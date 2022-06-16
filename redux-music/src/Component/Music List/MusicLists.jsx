@@ -1,19 +1,22 @@
 import React from "react";
-
-function MovieListing() {
+import MusicJson from "../Music/MusicJson";
+import MusicCard from "../Music List/MusicCard";
+function Home() {
   return (
-    <div className="container m-1 p-0">
+    <div className="container p-0">
       <div className="card-body">
         <h5 className="card-title text-center">Music List</h5>
-        <div className="d-flex justify-content-around flex-wrap">
-          dtgjhdtyjh
+        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+          {MusicJson.map((item, index) => {
+            return <MusicCard key={index} data={item} />;
+          })}
         </div>
       </div>
     </div>
   );
 }
 
-export default MovieListing;
+export default Home;
 
 // const Error = () => {
 //   return (

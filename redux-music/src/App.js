@@ -9,7 +9,7 @@ function App() {
     <div className="">
       <Router>
         <Header />
-        <div className="container">
+        <div className="container-fluid">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/music/:id" element={<PlayLists />} />
