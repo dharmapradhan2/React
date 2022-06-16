@@ -25,7 +25,7 @@ function PlayLists() {
     );
   // console.log(rendermusic);
   return (
-    <div className="container-fluid" style={{ height: "99vh" }}>
+    <div className="container-fluid m-0" style={{ height: "99vh" }}>
       <div className="card-body">
         <table className="table table-responsive text-center">
           <thead>
@@ -36,7 +36,7 @@ function PlayLists() {
               <th scope="col">Remove</th>
             </tr>
           </thead>
-          <tbody className="border-none">{rendermusic}</tbody>
+          <tbody>{rendermusic}</tbody>
         </table>
       </div>
     </div>
