@@ -14,7 +14,7 @@ function PlayLists() {
             <td>{index + 1}</td>
             <td>{item.title}</td>
             <td>{item.artiest}</td>
-            <td className="btn btn-danger m-0" onClick={() => dispatch(removeFromPlayList(item))}>
+            <td className="btn btn-danger" onClick={() => dispatch(removeFromPlayList(item))}>
               Remove
             </td>
           </tr>
@@ -27,7 +27,7 @@ function PlayLists() {
   return (
     <div className="container-fluid p-0" style={{ height: "99vh" }}>
       <div className="card-body">
-        <table className="table table-responsive m-0 ">
+        <table className="table table-responsive text">
           <thead>
             <tr>
               <th scope="col">No.</th>
