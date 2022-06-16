@@ -10,12 +10,12 @@ function PlayLists() {
       musics.map((item, index) => {
         // console.log(item.id);
         return (
-          <tr key={index} className="mb-1">
+          <tr key={index}>
             <td>{index + 1}</td>
             <td>{item.title}</td>
             <td>{item.artiest}</td>
-            <td className="btn btn-danger" onClick={() => dispatch(removeFromPlayList(item))}>
-              Remove
+            <td onClick={() => dispatch(removeFromPlayList(item))}>
+              <i className="bi bi-heart-fill text-danger"></i>
             </td>
           </tr>
         );
@@ -25,15 +25,15 @@ function PlayLists() {
     );
   // console.log(rendermusic);
   return (
-    <div className="container-fluid p-0" style={{ height: "99vh" }}>
+    <div className="container-fluid" style={{ height: "99vh" }}>
       <div className="card-body">
-        <table className="table table-responsive text">
+        <table className="table table-responsive text-center">
           <thead>
             <tr>
               <th scope="col">No.</th>
               <th scope="col">Title</th>
               <th scope="col">Artists</th>
-              <th scope="col">Action</th>
+              <th scope="col">Remove</th>
             </tr>
           </thead>
           <tbody className="border-none">{rendermusic}</tbody>
