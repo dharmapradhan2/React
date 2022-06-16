@@ -12,7 +12,7 @@ function PlayLists() {
   const rendermusic =
     musics.length !== "0" ? (
       musics.map((item, index) => {
-        console.log(item.id);
+        // console.log(item.id);
         return (
           <tr key={index}>
             <td>{index + 1}</td>
