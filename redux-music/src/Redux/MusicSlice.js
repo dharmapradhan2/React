@@ -19,9 +19,9 @@ const musicslice = createSlice({
     musicSelected: (state, { payload }) => {
       state.selected = payload;
     },
-    removeFromPlayList: (state, {data}) => {
-      console.log(data);
-      state.playList = state.playList.filter((item) => item.id !== data);
+    removeFromPlayList: (state, {payload}) => {
+      // console.log(payload);
+      state.playList = state.playList.filter((item) => item.id !== payload.id);
     },
   },
 });

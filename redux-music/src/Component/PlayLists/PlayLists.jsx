@@ -5,20 +5,20 @@ import { getAllPlayList, removeFromPlayList } from "../../Redux/MusicSlice";
 function PlayLists() {
   const musics = useSelector(getAllPlayList);
   const dispatch = useDispatch();
-  function deleteData(id) {
-    dispatch(removeFromPlayList(id));
-  }
-  console.log(musics.length);
+  // function deleteData(id) {
+    
+  // }
+  // console.log(musics.length);
   const rendermusic =
     musics.length !== "0" ? (
       musics.map((item, index) => {
-        console.log(item);
+        console.log(item.id);
         return (
           <tr key={index}>
             <td>{index + 1}</td>
             <td>{item.title}</td>
             <td>{item.artiest}</td>
-            <td className="btn btn-danger" onClick={() => deleteData(item.id)}>
+            <td className="btn btn-danger" onClick={() => dispatch(removeFromPlayList(item))}>
               Remove
             </td>
           </tr>
