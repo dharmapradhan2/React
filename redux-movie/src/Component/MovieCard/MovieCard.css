@@ -1,5 +1,4 @@
-.card1 {
-  max-height: 10%;
-  -webkit-box-shadow: -2px 5px 15px 5px #2f9dff;
-  box-shadow: -2px 5px 15px 5px #2f9dff;
+.card:hover {
+  transition: all ease-in-out 0.9s;
+  transform: scale(1.1);
 }

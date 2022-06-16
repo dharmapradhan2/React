@@ -1,21 +1,23 @@
 import React from "react";
-// impo
+import "./MovieCard.css";
+import { NavLink } from "react-router-dom";
 function MovieCard(props) {
-  console.log(props.data);
+  const { data } = props;
   return (
-    <div className="card1">
-      <div className="card">
+    <div className="card m-1 col-sm-3" style={{ height: "15%" }}>
+      {/* {console.log(data)} */}
+      <NavLink to={`/movie/${data.imdbID}`} className="text-decoration-none">
         <img
-          src={props.data.Poster}
+          src={data.Poster}
           className="card-img-top img-fluid img-thumbnail"
-          alt="poster"
+          alt={data.Poster}
+          style={{ height: "18rem" }}
         />
         <div className="card-body">
-          <h5 className="card-title">{props.data.Title}</h5>
-          <p className="card-text">
-              </p>
+          <h5 className="card-title">{data.Title}</h5>
+          <p className="card-text">{data.Year}</p>
         </div>
-      </div>
+      </NavLink>
     </div>
   );
 }

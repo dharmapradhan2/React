@@ -12,7 +12,7 @@ function Header() {
           <NavLink to="/">Home</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink to="/movie/er">Movies</NavLink>
+          <NavLink to="/movie/tt0108778">Movies</NavLink>
         </li>
         {/* <li className="nav-item">
           <NavLink className="contact" to="#">
