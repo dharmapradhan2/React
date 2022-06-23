@@ -42,22 +42,31 @@ class User extends Controller
         // print_r($request->all());
         $users=new Users;
         $users->name=$request['name'];
-        $users->password=bcrypt($request['password']);
+        $users->password=$request['password'];
         $users->save();
+        // $user=Users::create([
+        //     'name'=>$request['name'],
+        //     'password'=>$request['password']
+        // ]);
         // print_r($request);
         // return view('welcome')->with($request);
-        return response()->json('Sucessfully Inserted');
+        return response()->json('Sucessfully inserted data');
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($name,$password)
     {
-        //
+        // return response()->json($id);
+        $search=Users::where('name',$name)->where('password',$password)->get();
+        if (!is_null($search)) {
+            return response()->json($search);
+        } else {
+            return response()->json('Invalid');
+        }
     }
 
     /**
