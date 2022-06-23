@@ -16,7 +16,7 @@ function Signup() {
                 type="text"
                 name="uname"
                 className="form-control form-control-sm"
-                placeholder="@username"
+                placeholder="username"
                 required
               />
             </div>
@@ -40,7 +40,7 @@ function Signup() {
             </div>
           </form>
           <div className="justify-content-center">
-            <p className="card-text align-center small text-muted">
+            <p className="card-text align-center small">
               Already Have An Account
               <NavLink className="btn btn-block btn-sm btn-success m-1" to="/">
                 Login
