@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Users;
 class User extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class User extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Users::get());
     }
 
     /**
@@ -23,7 +23,7 @@ class User extends Controller
      */
     public function create()
     {
-        //
+        return response()->json('create');
     }
 
     /**
@@ -34,7 +34,19 @@ class User extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'password'=>'required',
+        ]);
+        // echo '<pre>';
+        // print_r($request->all());
+        $users=new Users;
+        $users->name=$request['name'];
+        $users->password=bcrypt($request['password']);
+        $users->save();
+        // print_r($request);
+        // return view('welcome')->with($request);
+        return response()->json('Sucessfully Inserted');
     }
 
     /**

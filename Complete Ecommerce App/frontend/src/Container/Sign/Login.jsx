@@ -13,7 +13,7 @@ function Login() {
             <div className="mb-3">
               <input
                 type="text"
-                name="uname"
+                name="name"
                 className="form-control form-control-sm"
                 placeholder="Username"
                 required
@@ -22,7 +22,7 @@ function Login() {
             <div className="mb-3">
               <input
                 type="password"
-                name="pwd"
+                name="password"
                 className="form-control form-control-sm"
                 placeholder="Password"
                 required
@@ -31,7 +31,6 @@ function Login() {
             <div className="mb-3">
               <input
                 type="submit"
-                name="signin"
                 className="btn btn-block btn-sm btn-success"
                 value="Sign in"
               />
