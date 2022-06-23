@@ -24,10 +24,10 @@ function Login() {
         SetMsg('invalid username & password...')
       }
     });
-    setTimeout(() => {
-      document.getElementById('form').reset();
-      SetMsg('');
-    }, 1000);
+    // setTimeout(() => {
+    //   document.getElementById('form').reset();
+    //   SetMsg('');
+    // }, 1000);
   }
   return (
     <div className="modal-dialog">
