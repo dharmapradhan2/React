@@ -1,10 +1,11 @@
 import React from "react";
+import './Navbar.css'
 import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg-light d-flex flex-column">
-      <div className="container-fluid">
+    <nav className="navbar navbar-expand-sm navbar-light bg d-flex flex-column m-0 p-0">
+      <div className="container-md">
         <NavLink className="navbar-brand" to="/home">
           Ecommerce App
         </NavLink>

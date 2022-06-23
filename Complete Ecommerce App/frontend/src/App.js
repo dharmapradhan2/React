@@ -5,13 +5,11 @@ import Signup from "./Container/Registration/Signup";
 import Home from "./Container/Home Page/Home";
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/Signup" element={<Signup />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
   );
 }
 
