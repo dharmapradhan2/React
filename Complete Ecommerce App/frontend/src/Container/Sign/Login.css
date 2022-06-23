@@ -1,16 +1,8 @@
 .modal-body {
-  background: rgb(34, 193, 195);
+  background: rgb(238, 174, 202);
   background: linear-gradient(
-    0deg,
-    rgb(204, 71, 169) 0%,
-    rgba(253, 187, 45, 1) 100%
-  );
-}
-.modal-header {
-  background: rgb(115, 34, 195);
-  background: linear-gradient(
-    180deg,
-    rgb(204, 71, 169) 0%,
-    rgba(253, 187, 45, 1) 100%
+    100deg,
+    rgba(238, 174, 202, 1) 25%,
+    rgba(148, 187, 233, 1) 75%
   );
 }
