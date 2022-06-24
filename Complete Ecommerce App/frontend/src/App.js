@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Container/Header/Navbar";
+// import Navbar from "./Container/Header/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import { Routes, Route } from "react-router-dom";
@@ -10,7 +10,7 @@ import AddProduct from "./Container/ProductsPage/AddProduct";
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
