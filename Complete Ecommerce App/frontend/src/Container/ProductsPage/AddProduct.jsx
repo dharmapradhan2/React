@@ -19,12 +19,10 @@ function AddProduct() {
       category: e.category,
     };
     // console.log(data);
-    const token = JSON.parse(localStorage.getItem("Token"));
+    // const token = JSON.parse(localStorage.getItem("Token"));
     // console.log(token);
     authApi
-      .post("/storeProduct", data, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .post("/storeProduct", data)
       .then((res) => {
         if (res.status === 200) {
           SetMsg(res.data);

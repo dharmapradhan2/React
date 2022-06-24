@@ -17,10 +17,10 @@ use App\Http\Controllers\ProductsController;
 
 Route::post('login', [UserController::class,'login']);
 Route::post('register', [UserController::class,'register']);
+Route::post('storeProduct', [ProductsController::class,'storeProduct']);
 Route::middleware('auth:api')->group(function () {
     Route::get('show', [UserController::class,'show']);
     Route::get('products', [ProductsController::class,'index']);
-    Route::post('storeProduct', [ProductsController::class,'storeProduct']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
