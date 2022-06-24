@@ -1,8 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import http from "../../APi/http";
 function Signup() {
-  let temp = "";
+  // let temp = "";
   // const msgRef = useRef();
   // msgRef.current.type='hide';
   const [msg, SetMsg] = useState("");

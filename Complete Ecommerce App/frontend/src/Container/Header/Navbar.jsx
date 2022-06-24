@@ -19,7 +19,7 @@ function Navbar() {
             <div className="nav-item nav-link ">
               <NavLink className="btn btn-sm btn-success" to="/cart">
                 Cart
-                <i>&#x1F6D2;</i>
+                <span role='img' aria-labelledby='none'>&#x1F6D2;</span>
               </NavLink>
             </div>
           </ul>
