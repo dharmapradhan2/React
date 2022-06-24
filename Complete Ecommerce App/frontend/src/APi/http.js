@@ -5,4 +5,3 @@ export default axios.create({
     "content-type": "application/json",
   },
 });
-// multipart/form-data;
