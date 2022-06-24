@@ -22,7 +22,7 @@ function AddProduct() {
     // console.log(token);
     http
       .post("/storeProduct", data, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` ,"content-type": "multipart/form-data",}
       })
       .then((res) => {
         console.log(res);
