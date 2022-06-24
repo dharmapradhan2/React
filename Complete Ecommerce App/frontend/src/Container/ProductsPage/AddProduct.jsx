@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Navbar from "../Header/Navbar";
-import http from "../../APi/http";
+import authApi from "../../APi/authApi";
 function AddProduct() {
+  const [msg, SetMsg] = useState("");
   const {
     register,
     handleSubmit,
@@ -10,37 +11,51 @@ function AddProduct() {
   } = useForm();
   function FormData(e) {
     // console.log(e);
-    const data={
-      'pname':e.pname,
-      'img':e.img[0],
-      'desc':e.desc,
-      'price':e.price,
-      'category':e.category
+    const data = {
+      pname: e.pname,
+      img: e.img[0],
+      desc: e.desc,
+      price: e.price,
+      category: e.category,
     };
     // console.log(data);
     const token = JSON.parse(localStorage.getItem("Token"));
     // console.log(token);
-    http
+    authApi
       .post("/storeProduct", data, {
-        headers: { Authorization: `Bearer ${token}` ,"content-type": "multipart/form-data",}
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          SetMsg(res.data);
+          document.getElementById("form").reset();
+        }
       })
       .catch((err) => {
         console.log(err);
-        // SetMsg("invalid username & password...");
+        SetMsg("something went wrong...");
         // localStorage.setItem("Token", null);
       });
-    // setTimeout(() => {
-    //   SetMsg("");
-    //   document.getElementById("form").reset();
-    // }, 2000);
+    setTimeout(() => {
+      SetMsg("");
+    }, 2000);
+    return true;
   }
   return (
     <div className="container-fluid m-0 p-0">
       <Navbar />
       <div className="container-sm">
+        <input
+          type={msg ? "text" : "hidden"}
+          className={
+            msg.startsWith("Product")
+              ? "alert alert-primary m-1 p-1"
+              : "alert alert-danger m-1 p-1"
+          }
+          role="alert"
+          value={msg}
+          readOnly
+        />
         <form
           name="form"
           id="form"

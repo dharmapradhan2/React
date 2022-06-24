@@ -38,7 +38,7 @@ class ProductsController extends Controller
     {
         $request->validate([
             'pname'=>'required',
-            'img'=>'required',
+            'img'=>'required|file',
             'price'=>'required',
         ]);
         $product= Products::create([
@@ -48,7 +48,7 @@ class ProductsController extends Controller
             'price'=>$request['price'],
             'desc'=>$request['desc'],
         ]);
-        return $product;
+        return response()->json('Product added Sucessfully..');
     }
 
     /**
