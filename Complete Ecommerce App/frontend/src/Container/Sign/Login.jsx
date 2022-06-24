@@ -1,4 +1,4 @@
-import React ,{useState}from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import http from "../../APi/http";
 import { NavLink } from "react-router-dom";
@@ -15,19 +15,27 @@ function Login() {
         }),
         {}
       );
-      console.log(data);
-    http.get(`show/${data.name}/${data.password}`).then((res) => {
-      if(res.data.length>0){
-        SetMsg('Login Sucessfully...');
-      }
-      else{
-        SetMsg('invalid username & password...')
-      }
-    });
-    // setTimeout(() => {
-    //   document.getElementById('form').reset();
-    //   SetMsg('');
-    // }, 1000);
+    // let token = "";
+    http
+      .post("/login", data)
+      .then((res) => {
+        if (res.status === 200) {
+          SetMsg("Login Sucessfully...");
+          localStorage.setItem("Token", JSON.stringify(res.data.token));
+          setTimeout(() => {
+            window.location.replace("/home");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err.response.status);
+        SetMsg("invalid username & password...");
+        localStorage.setItem("Token", null);
+      });
+    setTimeout(() => {
+      SetMsg("");
+      document.getElementById("form").reset();
+    }, 2000);
   }
   return (
     <div className="modal-dialog">
@@ -36,12 +44,16 @@ function Login() {
           <h5 className="modal-title text-center">LogIn</h5>
         </div>
         <input
-            type={(msg)?'text':'hidden'}
-            className="alert alert-primary m-1 p-1"
-            role="alert"
-            value={msg}
-            readOnly
-          />
+          type={msg ? "text" : "hidden"}
+          className={
+            msg.startsWith("Login")
+              ? "alert alert-primary m-1 p-1"
+              : "alert alert-danger m-1 p-1"
+          }
+          role="alert"
+          value={msg}
+          readOnly
+        />
         <div className="modal-body">
           <form name="form" id="form" onSubmit={(event) => FormData(event)}>
             <div className="mb-3">

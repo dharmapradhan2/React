@@ -17,7 +17,7 @@ function Signup() {
         }),
         {}
       );
-    http.post("/users", data).then((res) => SetMsg(res.data));
+    http.post("/register", data).then((res) => SetMsg(res.data));
     setTimeout(() => {
       document.getElementById('form').reset();
       SetMsg('');
