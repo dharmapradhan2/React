@@ -13,7 +13,12 @@ function Navbar() {
           <ul className="d-flex flex-row m-0">
             <div className="nav-item nav-link ">
               <NavLink className="btn btn-sm" to="/home">
-                All Product's
+                Home
+              </NavLink>
+            </div>
+            <div className="nav-item nav-link ">
+              <NavLink className="btn btn-sm" to="/addProduct">
+                Add Products
               </NavLink>
             </div>
             <div className="nav-item nav-link ">
