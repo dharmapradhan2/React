@@ -10,15 +10,24 @@ function Checkout() {
   let prodList = ["shits", "camera"].join(" ");
   // console.log(prodList);
   const [paid, setPaid] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   // console.log(totalPrice);
   const handleApprove = (data) => {
     // here calling the backend function to fulfill the order
     // if response is success
+    let orderedData = {
+      name: Object.values(data.payer.name).join(" "),
+      email: data.payer.email_address,
+      orderId: data.id,
+      create_time: data.create_time,
+      purchase_units:data.purchase_units[0].amout.value,
+      orderedItems:data.purchase_units[0].description,
+    };
     if (data.status === "COMPLETED") {
       setPaid(true);
+      console.log(orderedData);
     } else {
-        // if response is error
+      // if response is error
       setError("error");
     }
     console.log(data);
