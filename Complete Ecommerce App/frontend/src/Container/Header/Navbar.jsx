@@ -5,14 +5,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 function Navbar() {
   const navigate = useNavigate();
   useEffect(() => {
-    let token = localStorage.getItem("Token");
+    let token = localStorage.getItem("Data");
     // console.log(token);
     if (token === null) {
       navigate("/");
     }
   }, [navigate]);
   const logout = () => {
-    localStorage.removeItem("Token");
+    localStorage.removeItem("Data");
     navigate("/");
   };
   return (

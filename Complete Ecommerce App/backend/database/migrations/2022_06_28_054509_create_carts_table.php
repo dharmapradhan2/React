@@ -15,15 +15,16 @@ class CreateCartsTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id('cartId');
-            // $table->string('user_id');
-            $table->foreignId('uid')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('pid')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('uid')->references('uid')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('pid')->references('pid')->on('products')->onUpdate('cascade')->onDelete('cascade');
             $table->integer('qty');
+            $table->string('pname');
+            $table->bigInteger('price');
             $table->timestamps();
         });
     }
     /**
-     * Reverse the migrations.
+     * Reverse the migratzions.
      *
      * @return void
      */

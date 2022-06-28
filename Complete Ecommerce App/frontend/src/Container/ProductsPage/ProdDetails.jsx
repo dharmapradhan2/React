@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
-import { http, url } from "../../APi/commonApi";
+import swal from "sweetalert";
+import { http, url, cart } from "../../APi/commonApi";
 import { useParams } from "react-router-dom";
 function ProdDetails() {
   const { id } = useParams();
@@ -18,6 +19,37 @@ function ProdDetails() {
     };
     data();
   }, [id]);
+  const addToCart = () => {
+    const localData = JSON.parse(localStorage.getItem("Data"));
+    console.log(localData);
+    if (!localData) {
+      swal("Warning", "Please Login to addCart...", "warning");
+    }
+    const data = {
+      uid: localData.uid,
+      pid: prod.pid,
+      price: qty * prod.price,
+      pname:prod.pname,
+      qty: qty,
+    };
+    console.log("add to cart");
+    const adding = async () => {
+      await cart
+        .post("/addToCart", data)
+        .then((response) => {
+          if (response.status === 200) {
+            swal("Success", response.data.sucess, "success");
+          } else if (response.status === 201) {
+            swal("Warning", response.data.warning, "warning");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          swal("Error", "something went wrong..", "error");
+        });
+    };
+    adding();
+  };
   const decrementQty = () => {
     if (qty > 1) {
       SetQty((prevValue) => prevValue - 1);
@@ -48,7 +80,10 @@ function ProdDetails() {
               +
             </button>
           </div>
-          <button className="btn btn-primary m-2">Add to Cart</button>
+          <div className="m-2">Total Price : {qty * prod.price}</div>
+          <button className="btn btn-primary m-2" onClick={addToCart}>
+            Add to Cart
+          </button>
         </div>
       </div>
     );
