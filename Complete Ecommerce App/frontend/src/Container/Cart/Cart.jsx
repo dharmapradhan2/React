@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
 import { cart } from "../../APi/commonApi";
+import { useNavigate } from "react-router-dom";
 function Cart() {
+  const navigate = useNavigate();
   const [cartList, SetCartList] = useState([]);
   useEffect(() => {
     const localData = JSON.parse(localStorage.getItem("Data"));
@@ -17,6 +19,10 @@ function Cart() {
   }, []);
   let html = "";
   let total_price = 0;
+  const handleCheckout = () => {
+    localStorage.setItem('price',total_price);
+    navigate("/checkout");
+  };
   if (cartList.length > 0) {
     html = (
       <>
@@ -66,7 +72,11 @@ function Cart() {
             </tr>
           </tfoot>
         </table>
-        <div className="ms-auto"><button className="btn btn-success">Checkout</button></div>
+        <div className="ms-auto">
+          <button className="btn btn-success" onClick={handleCheckout}>
+            Checkout
+          </button>
+        </div>
       </>
     );
   } else {
