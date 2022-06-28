@@ -6,7 +6,7 @@ function Checkout() {
   useEffect(() => {
     SetPrice(localStorage.getItem("price")||0);
   });
-
+  
   return (
     <div className="container-fluid m-0 p-0">
       <Navbar />
