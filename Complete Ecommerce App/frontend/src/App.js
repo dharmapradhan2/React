@@ -1,5 +1,5 @@
 import React from "react";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+// import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "font-awesome/css/font-awesome.min.css";
 import { Routes, Route } from "react-router-dom";
@@ -13,12 +13,7 @@ import Checkout from "./Container/Checkout/Checkout";
 function App() {
   return (
     <>
-      <PayPalScriptProvider
-        options={{
-          "client-id":
-            "AXVa38MVxxJn8BJJbG_AsSbY_Yh3SZ79tQ_jNKBsIoWaE4DjxUtMtqRaGAxJT_54qSUGvkwv-FlRpmWZ",
-        }}
-      ></PayPalScriptProvider>
+     
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
