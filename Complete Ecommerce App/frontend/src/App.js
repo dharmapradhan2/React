@@ -10,6 +10,7 @@ import AddProduct from "./Container/ProductsPage/AddProduct";
 import ProdDetails from "./Container/ProductsPage/ProdDetails";
 import Cart from "./Container/Cart/Cart";
 import Checkout from "./Container/Checkout/Checkout";
+import ErrorPage from "./Container/MessagePage/ErrorPage";
 function App() {
   return (
     <>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/ProdDetails/:id" element={<ProdDetails />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </>
   );

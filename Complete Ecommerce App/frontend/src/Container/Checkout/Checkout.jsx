@@ -12,24 +12,28 @@ function Checkout() {
   const [paid, setPaid] = useState(false);
   const [error, setError] = useState(null);
   // console.log(totalPrice);
-  const handleApprove = (orderId) => {
+  const handleApprove = (data) => {
     // here calling the backend function to fulfill the order
     // if response is success
-    setPaid(true);
-    // if response is error
-    setError("error");
+    if (data.status === "COMPLETED") {
+      setPaid(true);
+    } else {
+        // if response is error
+      setError("error");
+    }
+    console.log(data);
   };
   if (paid) {
     // display sucess message and redirect to sucess page
-    alert("Thank you for your purches");
-    window.location.reload();
-    window.location.href = "/sucess";
+    console.log("Thank you for your purches");
+    // window.location.reload();
+    // window.location.href = "/sucess";
   }
   if (error) {
     // display error message & redirect to error page
-    alert(`error : ${error}`);
-    window.location.reload();
-    window.location.href = "/cart";
+    console.log(`error : ${error}`);
+    // window.location.reload();
+    // window.location.href = "/cart";
   }
   return (
     <div className="container-fluid m-0 p-0">
@@ -65,7 +69,7 @@ function Checkout() {
                     {
                       description: prodList,
                       amount: {
-                        value: price,
+                        value: "0.1",
                       },
                     },
                   ],
@@ -74,7 +78,7 @@ function Checkout() {
               onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
                 console.log(order);
-                handleApprove(data.orderID);
+                handleApprove(data);
               }}
               onError={(err) => {
                 setError(err);
@@ -82,8 +86,9 @@ function Checkout() {
               }}
               onCancel={() => {
                 // displaying cancel message and redirect to cancel page or back to cart
-                window.location.reload();
-                window.location.href = "/error";
+                console.log(`Error on cancel`);
+                // window.location.reload();
+                // window.location.href = "/error";
               }}
             />
           </PayPalScriptProvider>
