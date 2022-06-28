@@ -70,7 +70,7 @@ class ProductsController extends Controller
         if ($data) {
             return response()->json($data);
         } else {
-            return response()->json(['status' => 400, 'message' => 'No Product is avilable.']);
+            return response()->json(['status' => 404, 'message' => 'No Product is avilable.']);
         }
         // return $id;
     }
