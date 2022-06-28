@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
-import { http ,url} from "../../APi/commonApi";
+import { http, url } from "../../APi/commonApi";
 import { useParams } from "react-router-dom";
 function ProdDetails() {
   const { id } = useParams();
@@ -22,23 +22,18 @@ function ProdDetails() {
   if (prod) {
     console.log(prod);
     details = (
-      <div className="card row">
-        <div className="d-flex align-items-center">
-          <div className="flex-shrink-0">
-            <img src={url+ prod.filePath}  alt={prod.pname} />
-          </div>
-          <div className="flex-grow-1 ms-3">
-            <div className="card-body">
-              <h4 className="card-title">{prod.pname}</h4>
-              <p className="card-text">Rs. {prod.price}</p>
-            </div>
-          </div>
+      <div className="d-flex align-items-center">
+        <div className="">
+          <img src={url + prod.filePath} alt="..." width="20%" />
+        </div>
+        <div className="flex-grow-1 ms-3">
+          This is some content from a media component. You can replace this with
+          any content and adjust it as needed.
         </div>
       </div>
     );
-  }
-  else{
-    details=<div className="card alert">No Product Found.</div>
+  } else {
+    details = <div className="card alert">No Product Found.</div>;
   }
   return (
     <div className="container-fluid m-0 p-0">
