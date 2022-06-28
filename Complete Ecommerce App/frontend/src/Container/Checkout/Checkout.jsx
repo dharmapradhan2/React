@@ -10,7 +10,7 @@ function Checkout() {
   let prodList = ["shits", "camera"].join(" ");
   // console.log(prodList);
   const [paid, setPaid] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   // console.log(totalPrice);
   const handleApprove = (data) => {
     // here calling the backend function to fulfill the order
@@ -77,8 +77,8 @@ function Checkout() {
               }}
               onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
-                console.log(order);
-                handleApprove(data);
+                console.log(data);
+                handleApprove(order);
               }}
               onError={(err) => {
                 setError(err);
