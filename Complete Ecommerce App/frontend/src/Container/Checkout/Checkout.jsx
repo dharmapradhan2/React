@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
 import { cart } from "../../APi/commonApi";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import swal from "sweetalert";
 function Checkout() {
   const [temp, SetTemp] = useState({
     price: 0,
@@ -43,21 +44,36 @@ function Checkout() {
       orderedItems: order.purchase_units[0].description,
       price: +order.purchase_units[0].amount.value,
       email: order.payer.email_address,
+      uid: temp.uid,
       full_name: Object.values(order.payer.name).join(" "),
     };
-    console.log(orderedData);
-    // Object.entries(orderedData).forEach(([key, value]) => {
-    //   formData.append(key, value);
-    // });
-    console.log(JSON.stringify(orderedData));
+    // const deleteCart = async () => {
+    //   await cart.post(
+    //     "/clearCart",
+    //     JSON.stringify({
+    //       uid: temp.uid,
+    //     })
+    //   ).then((res)=>{
+
+    //   });
+    // };
     const storeOrder = async () => {
       await cart.post("storeOrder", JSON.stringify(orderedData)).then((res) => {
-        console.log(res);
+        let Href = "";
+        if (res.status === 200) {
+          swal("Success", res.data.success, "success");
+          Href = "/home";
+        } else {
+          swal("Canceled", "Your order is cancled", "error");
+          Href = "/cart";
+        }
+        setTimeout(() => {
+          window.location.reload();
+          window.location.href = Href;
+        }, 1000);
       });
     };
     storeOrder();
-    // window.location.reload();
-    // window.location.href = "/sucess";
   }
   if (error) {
     // display error message & redirect to error page
@@ -86,7 +102,7 @@ function Checkout() {
               onClick={(data, action) => {
                 const purchased = false;
                 if (purchased) {
-                  setError(`You alredy purchased these products.`);
+                  swal("", `You alredy purchased these products.`, "warning");
                   return action.reject();
                 } else {
                   return action.resolve();
@@ -110,7 +126,7 @@ function Checkout() {
               }}
               onApprove={async (data, actions) => {
                 const order = await actions.order.capture();
-                console.log(data);
+                // console.log(data);
                 handleApprove(order);
               }}
               onError={(err) => {
@@ -119,8 +135,9 @@ function Checkout() {
               }}
               onCancel={() => {
                 // displaying cancel message and redirect to cancel page or back to cart
-                console.log(`Error on cancel`);
+                // console.log(`Error on cancel`);
                 // window.location.reload();
+                swal("Error", "Your order is cancelled.", "error");
                 // window.location.href = "/error";
               }}
             />
