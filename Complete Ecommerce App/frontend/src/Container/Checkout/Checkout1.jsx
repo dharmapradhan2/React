@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
-// import { cart } from "../../APi/commonApi";
+import { cart } from "../../APi/commonApi";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 function Checkout() {
   const [temp, SetTemp] = useState({
@@ -12,35 +12,50 @@ function Checkout() {
     SetTemp(JSON.parse(localStorage.getItem("temp")));
   }, [SetTemp]);
   // console.log(temp);
+  // const formData = new FormData();
   // const p=Object.entries(temp.pname)
   let prodList = Object.values(temp.pname).join(", ");
   // console.log(prodList);
   const [paid, setPaid] = useState(false);
   const [error, setError] = useState("");
+  const [order, SetOrder] = useState({});
+  let orderedData = {};
   // console.log((temp.price / 78.28).toFixed(2));
   const handleApprove = (data) => {
     // here calling the backend function to fulfill the order
     // if response is success
-    // let orderedData = {
-    //   name: Object.values(data.payer.name).join(" "),
-    //   email: data.payer.email_address,
-    //   orderId: data.id,
-    //   create_time: data.create_time,
-    //   purchase_units: data.purchase_units[0].amout.value,
-    //   orderedItems: data.purchase_units[0].description,
-    // };
     if (data.status === "COMPLETED") {
+      SetOrder(data);
       setPaid(true);
       // console.log(orderedData);
     } else {
       // if response is error
       setError("error");
     }
-    console.log(data);
   };
   if (paid) {
     // display sucess message and redirect to sucess page
     console.log("Thank you for your purches");
+    // console.log(order);
+    const orderedData = {
+      orderId: order.id,
+      order_time: order.create_time,
+      orderedItems: order.purchase_units[0].description,
+      price: +order.purchase_units[0].amount.value,
+      email: order.payer.email_address,
+      full_name: Object.values(order.payer.name).join(" "),
+    };
+    console.log(orderedData);
+    // Object.entries(orderedData).forEach(([key, value]) => {
+    //   formData.append(key, value);
+    // });
+    console.log(JSON.stringify(orderedData));
+    const storeOrder = async () => {
+      await cart.post("storeOrder", JSON.stringify(orderedData)).then((res) => {
+        console.log(res);
+      });
+    };
+    storeOrder();
     // window.location.reload();
     // window.location.href = "/sucess";
   }
@@ -82,9 +97,13 @@ function Checkout() {
                 return actions.order.create({
                   purchase_units: [
                     {
+                      // description: prodList,
+                      // // amount: (temp.price / 78.28).toFixed(2),
+                      // amount: "0.1",
                       description: prodList,
-                      // amount: (temp.price / 78.28).toFixed(2),
-                      amount: "0.1",
+                      amount: {
+                        value: (temp.price / 78.28).toFixed(2),
+                      },
                     },
                   ],
                 });

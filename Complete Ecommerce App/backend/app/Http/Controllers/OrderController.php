@@ -35,7 +35,23 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'orderId' => 'required|unique',
+            'order_time' => 'required',
+            'orderedItems' => 'required',
+            'email' => 'required|email',
+            'price' => 'required',
+            'full_name' => 'required|string',
+        ]);
+        $order = order::create([
+            'orderId' => $request['orderId'],
+            'order_time' => $request['order_time'],
+            'orderedItems' => $request['orderedItems'],
+            'email' => $request['email'],
+            'price' => $request['price'],
+            'full_name' => $request['full_name'],
+        ]);
+        return response()->json($order, 200);
     }
 
     /**

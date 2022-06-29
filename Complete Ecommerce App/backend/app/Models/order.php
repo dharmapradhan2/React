@@ -14,7 +14,6 @@ class order extends Model
         'orderId',
         'order_time',
         'orderedItems',
-        'purchase_units',
         'price',
         'email',
         'full_name',

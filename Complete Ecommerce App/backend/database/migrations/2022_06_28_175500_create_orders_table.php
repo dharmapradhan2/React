@@ -8,7 +8,7 @@ class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *protected $fillable = [
      * @return void
      */
     public function up()
@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('orderId')->nullable();
             $table->string('order_time')->nullable();
             $table->string('orderedItems')->nullable();
-            $table->bigInteger('purchase_units')->default(1);
+            // $table->bigInteger('purchase_units')->default(1);
             $table->bigInteger('price')->default(0);
             $table->string('email')->nullable();
             $table->string('full_name')->nullable();

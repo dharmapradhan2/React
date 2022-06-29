@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,6 +28,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('show', [UserController::class, 'show']);
     Route::post('addToCart', [CartController::class, 'store']);
     Route::post('cartDetails', [CartController::class, 'index']);
+    Route::post('storeOrder', [OrderController::class, 'store']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

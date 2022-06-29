@@ -26,7 +26,7 @@ function Cart() {
       pname: pname,
       uid: localData.uid,
     };
-    localStorage.setItem('temp',JSON.stringify(temp));
+    localStorage.setItem("temp", JSON.stringify(temp));
     navigate("/checkout");
   };
   if (cartList.length > 0) {
@@ -89,7 +89,7 @@ function Cart() {
   } else {
     html = (
       <div className="mt-2 p-2 bd-highlight text-center">
-        <p>Your Cart is empty...</p>
+        <p>Your Cart is loading...</p>
       </div>
     );
   }
