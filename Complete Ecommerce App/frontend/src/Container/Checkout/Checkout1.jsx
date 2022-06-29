@@ -43,6 +43,7 @@ function Checkout() {
       orderedItems: order.purchase_units[0].description,
       price: +order.purchase_units[0].amount.value,
       email: order.payer.email_address,
+      uid: temp.uid,
       full_name: Object.values(order.payer.name).join(" "),
     };
     console.log(orderedData);

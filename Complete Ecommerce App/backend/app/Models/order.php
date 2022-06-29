@@ -15,7 +15,7 @@ class order extends Model
         'order_time',
         'orderedItems',
         'price',
-        'email',
+        'email', 'uid',
         'full_name',
     ];
 }

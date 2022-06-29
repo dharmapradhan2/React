@@ -12,9 +12,10 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $order = order::where('uid',$request->uid)->get();
+        return response()->json($order,200);
     }
 
     /**
@@ -36,11 +37,12 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'orderId' => 'required|unique',
+            'orderId' => 'required',
             'order_time' => 'required',
             'orderedItems' => 'required',
             'email' => 'required|email',
             'price' => 'required',
+            'uid'=>'required',
             'full_name' => 'required|string',
         ]);
         $order = order::create([
@@ -48,6 +50,7 @@ class OrderController extends Controller
             'order_time' => $request['order_time'],
             'orderedItems' => $request['orderedItems'],
             'email' => $request['email'],
+            'uid' => $request['uid'],
             'price' => $request['price'],
             'full_name' => $request['full_name'],
         ]);

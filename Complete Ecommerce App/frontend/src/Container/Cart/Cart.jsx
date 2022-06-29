@@ -16,7 +16,7 @@ function Cart() {
       });
     };
     data();
-  }, [localData]);
+  }, []);
   let html = "";
   let total_price = 0;
   let pname = [];

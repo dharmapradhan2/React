@@ -13,7 +13,7 @@ function Navbar() {
   }, [navigate]);
   const logout = () => {
     localStorage.removeItem("Data");
-    localStorage.removeItem("price");
+    localStorage.removeItem("temp");
     navigate("/");
   };
   return (
@@ -40,6 +40,11 @@ function Navbar() {
                 <span role="img" aria-labelledby="none">
                   &#x1F6D2;
                 </span>
+              </NavLink>
+            </div>
+            <div className="nav-item nav-link ">
+              <NavLink className="btn btn-sm" to="/order">
+                Orders
               </NavLink>
             </div>
           </ul>

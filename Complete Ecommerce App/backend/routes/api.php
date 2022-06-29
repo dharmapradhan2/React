@@ -29,6 +29,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('addToCart', [CartController::class, 'store']);
     Route::post('cartDetails', [CartController::class, 'index']);
     Route::post('storeOrder', [OrderController::class, 'store']);
+    Route::post('getOrderedDetails', [OrderController::class, 'index']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

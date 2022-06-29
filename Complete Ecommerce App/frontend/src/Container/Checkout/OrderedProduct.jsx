@@ -2,52 +2,70 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
 import { cart } from "../../APi/commonApi";
 function OrderedProduct() {
-  const [cartList, SetCartList] = useState([]);
+  const [orderList, SetOrderList] = useState([]);
   const localData = JSON.parse(localStorage.getItem("Data"));
   useEffect(() => {
     const test = {
       uid: localData.uid,
     };
     const data = async () => {
-      await cart.post("/cartDetails", test).then((res) => {
-        SetCartList(res.data);
-      });
+      await cart
+        .post("/getOrderedDetails", JSON.stringify(test))
+        .then((res) => {
+          SetOrderList(res.data);
+          // console.log(res);
+        });
     };
     data();
   }, [localData]);
   let html = "";
-  if (cartList.length > 0) {
+  if (orderList.length > 0) {
     html = (
       <>
         <table className="table table-striped table-inverse table-responsive">
           <thead className="thead-inverse">
             <tr>
               <th>
-                <small>No.</small>
+                <small className="">No. of Order</small>
               </th>
               <th>
-                <small>Product Name</small>
+                <small className="">Order ID</small>
               </th>
               <th>
-                <small>Quantity</small>
+                <small className="">Ordered Items</small>
               </th>
               <th>
-                <small>Price</small>
+                <small className="">Payees Name</small>
+              </th>
+              <th>
+                <small className="">Email</small>
+              </th>
+              <th>
+                <small className="">Price</small>
+              </th>
+              <th>
+                <small className="">Ordered Date & Time</small>
               </th>
             </tr>
           </thead>
           <tbody>
-            {cartList.map((item, i) => {
+            {orderList.map((item, i) => {
               return (
                 <tr key={i} className="text-center">
                   <td>
                     <div className="p-2 bd-highlight">{++i}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.pname}</div>
+                    <div className="p-2 bd-highlight">{item.orderId}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.qty}</div>
+                    <div className="p-2 bd-highlight">{item.orderedItems}</div>
+                  </td>
+                  <td>
+                    <div className="p-2 bd-highlight">{item.full_name}</div>
+                  </td>
+                  <td>
+                    <div className="p-2 bd-highlight">{item.email}</div>
                   </td>
                   <td>
                     <div className="p-2 bd-highlight">{item.price}</div>
@@ -62,7 +80,7 @@ function OrderedProduct() {
   } else {
     html = (
       <div className="mt-2 p-2 bd-highlight text-center">
-        <p>Your Cart is empty...</p>
+        <p>You did not ordered anything..</p>
       </div>
     );
   }
