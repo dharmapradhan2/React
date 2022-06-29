@@ -78,7 +78,7 @@ function Checkout() {
                     {
                       description: prodList,
                       amount: {
-                        value: "0.1",
+                        value: 0.1,
                       },
                     },
                   ],
