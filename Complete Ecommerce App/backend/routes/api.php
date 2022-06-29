@@ -27,6 +27,7 @@ Route::get('prodDetails/{id}', [ProductsController::class, 'prodDetails']);
 Route::middleware('auth:api')->group(function () {
     Route::get('show', [UserController::class, 'show']);
     Route::post('addToCart', [CartController::class, 'store']);
+    Route::post('deleteFromCart', [CartController::class, 'destroy']);
     Route::post('cartDetails', [CartController::class, 'index']);
     Route::post('storeOrder', [OrderController::class, 'store']);
     Route::post('getOrderedDetails', [OrderController::class, 'index']);

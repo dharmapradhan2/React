@@ -34,12 +34,12 @@ function OrderedProduct() {
               <th>
                 <small>Ordered Items</small>
               </th>
-              <th>
+              {/* <th>
                 <small>Payees Name</small>
               </th>
               <th>
                 <small>Email</small>
-              </th>
+              </th> */}
               <th>
                 <small>Price</small>
               </th>
@@ -61,12 +61,12 @@ function OrderedProduct() {
                   <td>
                     <small>{item.orderedItems}</small>
                   </td>
-                  <td>
+                  {/* <td>
                     <small>{item.full_name}</small>
                   </td>
                   <td>
                     <small>{item.email}</small>
-                  </td>
+                  </td> */}
                   <td>
                     <small>{item.price}</small>
                   </td>

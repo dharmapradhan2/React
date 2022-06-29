@@ -104,8 +104,13 @@ class CartController extends Controller
      * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy(Request $request)
     {
-        //
+        $delete = Cart::where('cartId', $request->cartId)->delete();
+        if ($delete) {
+            return response()->json(['message' => 'Product successfully removed from cart.'], 200);
+        } else {
+            return response()->json(['error' => 'Product can\'t be remove from cart.'], 401);;
+        }
     }
 }
