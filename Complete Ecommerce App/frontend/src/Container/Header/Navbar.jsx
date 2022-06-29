@@ -17,8 +17,8 @@ function Navbar() {
     navigate("/");
   };
   return (
-    <nav className="navbar navbar-expand-sm navbar-light bg d-flex flex-column m-0 p-0">
-      <div className="container-md">
+    <nav className="navbar navbar-expand-md navbar-light bg d-flex flex-column m-0 p-0">
+      <div className="container-fluid">
         <NavLink className="navbar-brand" to="/home">
           Ecommerce App
         </NavLink>

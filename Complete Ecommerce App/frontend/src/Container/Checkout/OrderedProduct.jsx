@@ -21,30 +21,30 @@ function OrderedProduct() {
   let html = "";
   if (orderList.length > 0) {
     html = (
-      <>
-        <table className="table table-sm table-striped table-inverse table-sm-responsive">
-          <thead className="thead-inverse">
+      <div className="table-responsive-sm m-0">
+        <table className="table table-sm table-striped table-inverse">
+          <thead className="text-center">
             <tr>
               <th>
-                <small className="">No. of Order</small>
+                <small>No. of Order</small>
               </th>
               <th>
-                <small className="">Order ID</small>
+                <small>Order ID</small>
               </th>
               <th>
-                <small className="">Ordered Items</small>
+                <small>Ordered Items</small>
               </th>
               <th>
-                <small className="">Payees Name</small>
+                <small>Payees Name</small>
               </th>
               <th>
-                <small className="">Email</small>
+                <small>Email</small>
               </th>
               <th>
-                <small className="">Price</small>
+                <small>Price</small>
               </th>
               <th>
-                <small className="">Ordered Date & Time</small>
+                <small>Ordered Date & Time</small>
               </th>
             </tr>
           </thead>
@@ -53,32 +53,32 @@ function OrderedProduct() {
               return (
                 <tr key={i} className="text-center">
                   <td>
-                    <div className="">{++i}</div>
+                    <small>{++i}</small>
                   </td>
                   <td>
-                    <div className="">{item.orderId}</div>
+                    <small>{item.orderId}</small>
                   </td>
                   <td>
-                    <div className="">{item.orderedItems}</div>
+                    <small>{item.orderedItems}</small>
                   </td>
                   <td>
-                    <div className="">{item.full_name}</div>
+                    <small>{item.full_name}</small>
                   </td>
                   <td>
-                    <div className="">{item.email}</div>
+                    <small>{item.email}</small>
                   </td>
                   <td>
-                    <div className="">{item.price}</div>
+                    <small>{item.price}</small>
                   </td>
                   <td>
-                    <div className="">{item.created_at}</div>
+                    <small>{item.created_at}</small>
                   </td>
                 </tr>
               );
             })}
           </tbody>
         </table>
-      </>
+      </div>
     );
   } else {
     html = (
@@ -90,7 +90,7 @@ function OrderedProduct() {
   return (
     <div className="container-fluid m-0 p-0">
       <Navbar />
-      <div className="container-fluide">{html}</div>
+      <div className="container p-2">{html}</div>
     </div>
   );
 }

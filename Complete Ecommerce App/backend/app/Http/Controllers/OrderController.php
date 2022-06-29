@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\order;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -14,8 +15,8 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $order = order::where('uid',$request->uid)->get();
-        return response()->json($order,200);
+        $order = order::where('uid', $request->uid)->get();
+        return response()->json($order, 200);
     }
 
     /**
@@ -42,19 +43,27 @@ class OrderController extends Controller
             'orderedItems' => 'required',
             'email' => 'required|email',
             'price' => 'required',
-            'uid'=>'required',
+            'uid' => 'required',
             'full_name' => 'required|string',
         ]);
-        $order = order::create([
-            'orderId' => $request['orderId'],
-            'order_time' => $request['order_time'],
-            'orderedItems' => $request['orderedItems'],
-            'email' => $request['email'],
-            'uid' => $request['uid'],
-            'price' => $request['price'],
-            'full_name' => $request['full_name'],
-        ]);
-        return response()->json($order, 200);
+        $search = order::where('uid', $request->uid)->where('orderId', $request->orderId)->get();
+        if (count($search) == 0) {
+            $order = order::create([
+                'orderId' => $request['orderId'],
+                'order_time' => $request['order_time'],
+                'orderedItems' => $request['orderedItems'],
+                'email' => $request['email'],
+                'uid' => $request['uid'],
+                'price' => $request['price'],
+                'full_name' => $request['full_name'],
+            ]);
+            if ($order) {
+                $cart = Cart::where('uid', $request->uid)->delete();
+                return response()->json(['success' => 'Your order successfully placed.'], 200);
+            } else {
+                return response()->json(['error' => 'Sorry, Your order can\'t be palced right now.'], 401);
+            }
+        }
     }
 
     /**
