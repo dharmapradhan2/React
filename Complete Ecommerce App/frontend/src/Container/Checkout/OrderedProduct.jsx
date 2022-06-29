@@ -71,7 +71,7 @@ function OrderedProduct() {
                     <small>{item.price}</small>
                   </td>
                   <td>
-                    <small>{(item.created_at).split('T')[0]}</small>
+                    <small>{item.created_at.split("T")[0]}</small>
                   </td>
                 </tr>
               );
@@ -90,7 +90,7 @@ function OrderedProduct() {
   return (
     <div className="container-fluid m-0 p-0">
       <Navbar />
-      <div className="container">{html}</div>
+      <div className="m-2">{html}</div>
     </div>
   );
 }

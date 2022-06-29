@@ -17,7 +17,43 @@ function Navbar() {
     navigate("/");
   };
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg d-flex flex-column m-0 p-0">
+    <nav className="navbar-expand-lg">
+      <ul className="nav container-fluid">
+        <li className="nav-item slam-left">
+          <NavLink to="/home">Ecommerce App</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/home">Home</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/addProduct">Add Products</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/cart">
+            Cart
+            <span role="img" aria-labelledby="none">
+              &#x1F6D2;
+            </span>
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink to="/order">Orders</NavLink>
+        </li>
+        <button
+          className="nav-item btn btn-sm btn-warning"
+          onClick={() => logout()}
+        >
+          Logout
+        </button>
+      </ul>
+    </nav>
+  );
+}
+
+export default Navbar;
+
+{
+  /* <nav className="navbar navbar-expand-md navbar-light bg d-flex flex-column m-0 p-0">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/home">
           Ecommerce App
@@ -55,8 +91,5 @@ function Navbar() {
           </div>
         </div>
       </div>
-    </nav>
-  );
+    </nav> */
 }
-
-export default Navbar;
