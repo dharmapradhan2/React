@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
 import { cart } from "../../APi/commonApi";
-import { useNavigate } from "react-router-dom";
-function Cart() {
-  const navigate = useNavigate();
+function OrderedProduct() {
   const [cartList, SetCartList] = useState([]);
   const localData = JSON.parse(localStorage.getItem("Data"));
   useEffect(() => {
@@ -18,17 +16,6 @@ function Cart() {
     data();
   }, [localData]);
   let html = "";
-  let total_price = 0;
-  let pname = [];
-  const handleCheckout = () => {
-    const temp = {
-      price: total_price,
-      pname: pname,
-      uid: localData.uid,
-    };
-    localStorage.setItem('temp',JSON.stringify(temp));
-    navigate("/checkout");
-  };
   if (cartList.length > 0) {
     html = (
       <>
@@ -51,8 +38,6 @@ function Cart() {
           </thead>
           <tbody>
             {cartList.map((item, i) => {
-              pname.push(item.pname);
-              total_price += item.price;
               return (
                 <tr key={i} className="text-center">
                   <td>
@@ -71,19 +56,7 @@ function Cart() {
               );
             })}
           </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={4} className="ms-auto p-2 bd-highlight">
-                Total Price = {total_price}
-              </td>
-            </tr>
-          </tfoot>
         </table>
-        <div className="ms-auto">
-          <button className="btn btn-success" onClick={handleCheckout}>
-            Checkout
-          </button>
-        </div>
       </>
     );
   } else {
@@ -103,4 +76,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default OrderedProduct;
