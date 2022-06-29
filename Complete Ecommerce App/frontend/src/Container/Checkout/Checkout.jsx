@@ -50,56 +50,55 @@ function Checkout() {
       <div className="container-md">
         <div className="container p-1 m-2 align-center">
           <PayPalScriptProvider
-            options={{
+             options={{
               "client-id":
                 "AXVa38MVxxJn8BJJbG_AsSbY_Yh3SZ79tQ_jNKBsIoWaE4DjxUtMtqRaGAxJT_54qSUGvkwv-FlRpmWZ",
             }}
           >
-            <PayPalButtons
-              style={{
-                layout: "vertical",
-                color: "blue",
-                shape: "pill",
-                label: "pay",
-              }}
-              onClick={(data, action) => {
-                const purchased = false;
-                if (purchased) {
-                  setError(`You alredy purchased these products.`);
-                  return action.reject();
-                } else {
-                  return action.resolve();
-                }
-              }}
-              createOrder={(data, actions) => {
-                // Set up the transaction
-                return actions.order.create({
-                  purchase_units: [
-                    {
-                      description: prodList,
-                      amount: {
-                        value: "0.1",
-                      },
-                    },
-                  ],
-                });
-              }}
-              onApprove={async (data, actions) => {
-                const order = await actions.order.capture();
-                console.log(data);
-                handleApprove(order);
-              }}
-              onError={(err) => {
-                setError(err);
-                console.error(`Payment checkout error: ${err}`);
-              }}
-              onCancel={() => {
-                // displaying cancel message and redirect to cancel page or back to cart
-                console.log(`Error on cancel`);
-                // window.location.reload();
-                // window.location.href = "/error";
-              }}
-            />
+           <PayPalButtons
+        style={{
+          layout: "vertical",
+          color: "blue",
+          shape: "pill",
+          label: "pay",
+        }}
+        onClick={(data, action) => {
+          const purchased = false;
+          if (purchased) {
+            setError(`You alredy purchased these products.`);
+            return action.reject();
+          } else {
+            return action.resolve();
+          }
+        }}
+        createOrder={(data, actions) => {
+          // Set up the transaction
+          return actions.order.create({
+            purchase_units: [
+              {
+                description: prodList,
+                amount: {
+                  total: price,
+                },
+              },
+            ],
+          });
+        }}
+        onApprove={async (data, actions) => {
+          const order = await actions.order.capture();
+          console.log(order);
+          handleApprove(order);
+        }}
+        onError={(err) => {
+          setError(err);
+          console.error(`Payment checkout error: ${err}`);
+        }}
+        onCancel={() => {
+          // displaying cancel message and redirect to cancel page or back to cart
+          // window.location.reload();
+          // window.location.href = "/error";
+        }}
+      />
           </PayPalScriptProvider>
         </div>
       </div>
