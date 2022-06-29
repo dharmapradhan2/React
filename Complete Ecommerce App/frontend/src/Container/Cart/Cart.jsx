@@ -89,7 +89,7 @@ function Cart() {
   } else {
     html = (
       <div className="mt-2 p-2 bd-highlight text-center">
-        <p>Your Cart is loading...</p>
+        <p>Your Cart is empty...</p>
       </div>
     );
   }

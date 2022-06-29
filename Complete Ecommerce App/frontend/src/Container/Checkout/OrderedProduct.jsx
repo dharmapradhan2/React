@@ -13,7 +13,7 @@ function OrderedProduct() {
         .post("/getOrderedDetails", JSON.stringify(test))
         .then((res) => {
           SetOrderList(res.data);
-          console.log(res);
+          // console.log(res);
         });
     };
     data();
@@ -21,8 +21,8 @@ function OrderedProduct() {
   let html = "";
   if (orderList.length > 0) {
     html = (
-      <div className="table-responsive-sm m-0">
-        <table className="table table-sm table-striped table-inverse">
+      <div className="table-responsive-md">
+        <table className="table table-md table-striped table-inverse">
           <thead className="text-center">
             <tr>
               <th>
@@ -90,7 +90,7 @@ function OrderedProduct() {
   return (
     <div className="container-fluid m-0 p-0">
       <Navbar />
-      <div className="container p-2">{html}</div>
+      <div className="container">{html}</div>
     </div>
   );
 }
