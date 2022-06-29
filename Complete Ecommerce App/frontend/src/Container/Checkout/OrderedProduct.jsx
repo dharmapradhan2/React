@@ -44,7 +44,7 @@ function OrderedProduct() {
                 <small>Price</small>
               </th>
               <th>
-                <small>Ordered Date & Time</small>
+                <small>Ordered Date</small>
               </th>
             </tr>
           </thead>
@@ -71,7 +71,7 @@ function OrderedProduct() {
                     <small>{item.price}</small>
                   </td>
                   <td>
-                    <small>{item.created_at}</small>
+                    <small>{(item.created_at).split('T')[0]}</small>
                   </td>
                 </tr>
               );

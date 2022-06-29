@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
 import { cart } from "../../APi/commonApi";
+import { useNavigate } from "react-router-dom";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import swal from "sweetalert";
 function Checkout() {
+  const navigate = useNavigate();
   const [temp, SetTemp] = useState({
     price: 0,
     pname: [],
@@ -12,16 +14,12 @@ function Checkout() {
   useEffect(() => {
     SetTemp(JSON.parse(localStorage.getItem("temp")));
   }, [SetTemp]);
-  // console.log(temp);
-  // const formData = new FormData();
-  // const p=Object.entries(temp.pname)
   let prodList = Object.values(temp.pname).join(", ");
   // console.log(prodList);
   const [paid, setPaid] = useState(false);
   const [error, setError] = useState("");
   const [order, SetOrder] = useState({});
   let orderedData = {};
-  // console.log((temp.price / 78.28).toFixed(2));
   const handleApprove = (data) => {
     // here calling the backend function to fulfill the order
     // if response is success
@@ -47,16 +45,6 @@ function Checkout() {
       uid: temp.uid,
       full_name: Object.values(order.payer.name).join(" "),
     };
-    // const deleteCart = async () => {
-    //   await cart.post(
-    //     "/clearCart",
-    //     JSON.stringify({
-    //       uid: temp.uid,
-    //     })
-    //   ).then((res)=>{
-
-    //   });
-    // };
     const storeOrder = async () => {
       await cart.post("storeOrder", JSON.stringify(orderedData)).then((res) => {
         let Href = "";
@@ -68,6 +56,7 @@ function Checkout() {
           Href = "/cart";
         }
         setTimeout(() => {
+          localStorage.removeItem("temp");
           window.location.reload();
           window.location.href = Href;
         }, 1000);
@@ -78,8 +67,9 @@ function Checkout() {
   if (error) {
     // display error message & redirect to error page
     console.log(`error : ${error}`);
-    // window.location.reload();
-    // window.location.href = "/cart";
+    swal("Error", "Somthing went wrong..", "error");
+    window.location.reload();
+    navigate("/cart");
   }
   return (
     <div className="container-fluid m-0 p-0">
@@ -113,9 +103,6 @@ function Checkout() {
                 return actions.order.create({
                   purchase_units: [
                     {
-                      // description: prodList,
-                      // // amount: (temp.price / 78.28).toFixed(2),
-                      // amount: "0.1",
                       description: prodList,
                       amount: {
                         value: (temp.price / 78.28).toFixed(2),
@@ -135,10 +122,11 @@ function Checkout() {
               }}
               onCancel={() => {
                 // displaying cancel message and redirect to cancel page or back to cart
-                // console.log(`Error on cancel`);
-                // window.location.reload();
                 swal("Error", "Your order is cancelled.", "error");
-                // window.location.href = "/error";
+                setTimeout(() => {
+                  window.location.reload();
+                  window.location.href = "/cart";
+                }, 1500);
               }}
             />
           </PayPalScriptProvider>

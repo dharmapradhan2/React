@@ -32,7 +32,6 @@ function Cart() {
         } else if (res.status === 401) {
           swal("Error Occoured", res.data.error, "error");
         }
-
         // console.log(res);
       });
   };

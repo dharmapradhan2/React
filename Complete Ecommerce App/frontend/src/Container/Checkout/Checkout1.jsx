@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../Header/Navbar";
 import { cart } from "../../APi/commonApi";
+import { useNavigate } from "react-router-dom";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import swal from "sweetalert";
 function Checkout() {
+  const navigate = useNavigate();
   const [temp, SetTemp] = useState({
     price: 0,
     pname: [],
@@ -54,6 +56,7 @@ function Checkout() {
           Href = "/cart";
         }
         setTimeout(() => {
+          localStorage.removeItem("temp");
           window.location.reload();
           window.location.href = Href;
         }, 1000);
@@ -64,8 +67,9 @@ function Checkout() {
   if (error) {
     // display error message & redirect to error page
     console.log(`error : ${error}`);
-    // window.location.reload();
-    // window.location.href = "/cart";
+    swal("Error", "Somthing went wrong..", "error");
+    window.location.reload();
+    navigate("/cart");
   }
   return (
     <div className="container-fluid m-0 p-0">
