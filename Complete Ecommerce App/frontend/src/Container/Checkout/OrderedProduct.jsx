@@ -13,16 +13,16 @@ function OrderedProduct() {
         .post("/getOrderedDetails", JSON.stringify(test))
         .then((res) => {
           SetOrderList(res.data);
-          // console.log(res);
+          console.log(res);
         });
     };
     data();
-  }, [localData]);
+  }, []);
   let html = "";
   if (orderList.length > 0) {
     html = (
       <>
-        <table className="table table-striped table-inverse table-responsive">
+        <table className="table table-sm table-striped table-inverse table-sm-responsive">
           <thead className="thead-inverse">
             <tr>
               <th>
@@ -53,22 +53,25 @@ function OrderedProduct() {
               return (
                 <tr key={i} className="text-center">
                   <td>
-                    <div className="p-2 bd-highlight">{++i}</div>
+                    <div className="">{++i}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.orderId}</div>
+                    <div className="">{item.orderId}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.orderedItems}</div>
+                    <div className="">{item.orderedItems}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.full_name}</div>
+                    <div className="">{item.full_name}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.email}</div>
+                    <div className="">{item.email}</div>
                   </td>
                   <td>
-                    <div className="p-2 bd-highlight">{item.price}</div>
+                    <div className="">{item.price}</div>
+                  </td>
+                  <td>
+                    <div className="">{item.created_at}</div>
                   </td>
                 </tr>
               );
@@ -79,7 +82,7 @@ function OrderedProduct() {
     );
   } else {
     html = (
-      <div className="mt-2 p-2 bd-highlight text-center">
+      <div className="mt-2  text-center">
         <p>You did not ordered anything..</p>
       </div>
     );
@@ -87,9 +90,7 @@ function OrderedProduct() {
   return (
     <div className="container-fluid m-0 p-0">
       <Navbar />
-      <div className="container-md">
-        <div className="d-flex flex-column bd-highlight mb-3">{html}</div>
-      </div>
+      <div className="container-fluide">{html}</div>
     </div>
   );
 }
